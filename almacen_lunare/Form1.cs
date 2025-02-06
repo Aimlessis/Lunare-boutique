@@ -1,64 +1,111 @@
-using ScottPlot;
+﻿using System;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
+using almacen_lunare;
 
-namespace almacen_lunare
+namespace Lunare
 {
     public partial class Form1 : Form
     {
+        private bool showContrasena = false;
+        string connectionstr = @"Data Source=DESKTOP-M2RKSNG\SQLSQL;Initial Catalog=test;Integrated Security=True;";
+
         public Form1()
         {
-
             InitializeComponent();
-            Createplot();
-        }
-        bool Isopen = false;
-        private void formsPlot1_Load(object sender, EventArgs e)
-        {
-
-        }
-        public void Createplot()
-        {
-            double[] xs1 = { 1, 2, 3, 4 };
-            double[] ys1 = { 5, 10, 7, 13 };
-            var bars1 = formsPlot1.Plot.Add.Bars(xs1, ys1);
-            bars1.LegendText = "Alpha";
-
-            double[] xs2 = { 6, 7, 8, 9 };
-            double[] ys2 = { 7, 12, 9, 15 };
-            var bars2 = formsPlot1.Plot.Add.Bars(xs2, ys2);
-            bars2.LegendText = "Beta";
-
-            formsPlot1.Plot.ShowLegend(Alignment.UpperLeft);
-            formsPlot1.Plot.Axes.Margins(bottom: 0);
-
-            formsPlot1.Refresh();
         }
 
-        private void extendmenu_Click(object sender, EventArgs e)
+        private void pictureBox4_Click(object sender, EventArgs e)
         {
+            showContrasena = !showContrasena;
+            textContrasena.PasswordChar = showContrasena ? '\0' : '*';
+        }
 
-            if (!Isopen)
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string name = textNombre.Text.Trim();
+            string contra = textContrasena.Text.Trim();
+
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(contra))
             {
-                Isopen = true;
-                panel6.Enabled = true;
-                panel6.Visible = true;
+                MessageBox.Show("Por favor, llena todos los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using SqlConnection connection = new SqlConnection(connectionstr);
+            connection.Open();
+
+            
+            string checkUserQuery = "SELECT COUNT(*) FROM usuarios WHERE username = @username";
+            using (SqlCommand checkCmd = new SqlCommand(checkUserQuery, connection))
+            {
+                checkCmd.Parameters.AddWithValue("@username", name);
+                int userExists = (int)checkCmd.ExecuteScalar();
+
+                if (userExists > 0)
+                {
+                    MessageBox.Show("El usuario ya está registrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+
+           
+            string insertQuery = "INSERT INTO usuarios (username, password) VALUES (@username, @password)";
+            using SqlCommand insertCmd = new SqlCommand(insertQuery, connection);
+            insertCmd.Parameters.AddWithValue("@username", name);
+            insertCmd.Parameters.AddWithValue("@password", contra);
+
+            int result = insertCmd.ExecuteNonQuery();
+            if (result > 0)
+            {
+                MessageBox.Show("Registro exitoso. Ahora puedes iniciar sesión.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                panel6.Enabled = false;
-                panel6.Visible = false;
-                Isopen = false;
+                MessageBox.Show("Error al registrar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string name = textNombre.Text.Trim();
+            string contra = textContrasena.Text.Trim();
+
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(contra))
+            {
+                MessageBox.Show("Por favor, llena todos los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
-        }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+            using (SqlConnection connection = new SqlConnection(connectionstr))
+            {
+                connection.Open();
 
-        private void panel6_Paint(object sender, PaintEventArgs e)
-        {
+                string loginQuery = "SELECT COUNT(*) FROM usuarios WHERE username = @username AND password = @password";
+                using SqlCommand cmd = new SqlCommand(loginQuery, connection);
+                cmd.Parameters.AddWithValue("@username", name);
+                cmd.Parameters.AddWithValue("@password", contra);
 
+                int count = (int)cmd.ExecuteScalar();
+
+                if (count > 0)
+                {
+                    MessageBox.Show("Inicio de sesión exitoso.", "Bienvenido", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Hide();
+
+                    
+                    menu menuForm = new();
+                    menuForm.ShowDialog();
+
+                   
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
-
     }
 }
