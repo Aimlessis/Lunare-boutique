@@ -72,40 +72,40 @@
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
-            tabPage3 = new TabPage();
-            tabPage4 = new TabPage();
             panel8 = new Panel();
+            tabPage3 = new TabPage();
+            panel11 = new Panel();
+            label28 = new Label();
+            label27 = new Label();
+            tbxtotal = new TextBox();
+            tbxprecio = new TextBox();
+            fechavencimiento_box = new DateTimePicker();
+            label26 = new Label();
+            label25 = new Label();
+            label24 = new Label();
+            label23 = new Label();
+            label22 = new Label();
+            tbxcant = new TextBox();
+            tbxcantidad = new TextBox();
+            tbxnomprod = new TextBox();
+            tbxcodigo = new TextBox();
+            guardarentrada_bttn = new Button();
             panel9 = new Panel();
-            textBox1 = new TextBox();
-            comboBox1 = new ComboBox();
-            label18 = new Label();
-            label19 = new Label();
             historial = new Button();
+            label19 = new Label();
+            label18 = new Label();
+            comboaccionentrada = new ComboBox();
+            tbxnotaentrada = new TextBox();
+            tabPage4 = new TabPage();
+            panel12 = new Panel();
+            dataGridView1 = new DataGridView();
+            fac_bttn = new Button();
             panel10 = new Panel();
+            label29 = new Label();
             button3 = new Button();
             label21 = new Label();
-            comboBox2 = new ComboBox();
-            textBox2 = new TextBox();
-            panel11 = new Panel();
-            button4 = new Button();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            textBox6 = new TextBox();
-            textBox7 = new TextBox();
-            label22 = new Label();
-            label23 = new Label();
-            label24 = new Label();
-            label25 = new Label();
-            label26 = new Label();
-            dateTimePicker1 = new DateTimePicker();
-            textBox5 = new TextBox();
-            textBox8 = new TextBox();
-            label27 = new Label();
-            label28 = new Label();
-            panel12 = new Panel();
-            fac_bttn = new Button();
-            dataGridView1 = new DataGridView();
-            label29 = new Label();
+            comboaccionfac = new ComboBox();
+            tbxnotafacturacion = new TextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
@@ -125,12 +125,12 @@
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
             tabPage3.SuspendLayout();
-            tabPage4.SuspendLayout();
-            panel9.SuspendLayout();
-            panel10.SuspendLayout();
             panel11.SuspendLayout();
+            panel9.SuspendLayout();
+            tabPage4.SuspendLayout();
             panel12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            panel10.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -486,7 +486,7 @@
             panel6.Controls.Add(pedidos_bttn);
             panel6.Controls.Add(Home_bttn);
             panel6.Enabled = false;
-            panel6.Location = new Point(1276, 112);
+            panel6.Location = new Point(87, 117);
             panel6.Name = "panel6";
             panel6.Size = new Size(200, 534);
             panel6.TabIndex = 5;
@@ -636,6 +636,14 @@
             tabPage2.Text = " Pedidos";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // panel8
+            // 
+            panel8.BackColor = Color.FromArgb(97, 54, 48);
+            panel8.Location = new Point(860, 22);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(274, 184);
+            panel8.TabIndex = 3;
+            // 
             // tabPage3
             // 
             tabPage3.Controls.Add(panel11);
@@ -648,25 +656,170 @@
             tabPage3.Text = " Entrada y salida";
             tabPage3.UseVisualStyleBackColor = true;
             // 
-            // tabPage4
+            // panel11
             // 
-            tabPage4.Controls.Add(panel12);
-            tabPage4.Controls.Add(panel10);
-            tabPage4.Location = new Point(4, 24);
-            tabPage4.Name = "tabPage4";
-            tabPage4.Padding = new Padding(3);
-            tabPage4.Size = new Size(1169, 561);
-            tabPage4.TabIndex = 3;
-            tabPage4.Text = "Facturacion";
-            tabPage4.UseVisualStyleBackColor = true;
+            panel11.BackColor = Color.FromArgb(86, 97, 48);
+            panel11.Controls.Add(label28);
+            panel11.Controls.Add(label27);
+            panel11.Controls.Add(tbxtotal);
+            panel11.Controls.Add(tbxprecio);
+            panel11.Controls.Add(fechavencimiento_box);
+            panel11.Controls.Add(label26);
+            panel11.Controls.Add(label25);
+            panel11.Controls.Add(label24);
+            panel11.Controls.Add(label23);
+            panel11.Controls.Add(label22);
+            panel11.Controls.Add(tbxcant);
+            panel11.Controls.Add(tbxcantidad);
+            panel11.Controls.Add(tbxnomprod);
+            panel11.Controls.Add(tbxcodigo);
+            panel11.Controls.Add(guardarentrada_bttn);
+            panel11.Location = new Point(36, 150);
+            panel11.Name = "panel11";
+            panel11.Size = new Size(1095, 359);
+            panel11.TabIndex = 2;
             // 
-            // panel8
+            // label28
             // 
-            panel8.BackColor = Color.FromArgb(97, 54, 48);
-            panel8.Location = new Point(860, 22);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(274, 184);
-            panel8.TabIndex = 3;
+            label28.AutoSize = true;
+            label28.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label28.ForeColor = Color.White;
+            label28.Location = new Point(918, 19);
+            label28.Name = "label28";
+            label28.Size = new Size(39, 17);
+            label28.TabIndex = 24;
+            label28.Text = "Total";
+            // 
+            // label27
+            // 
+            label27.AutoSize = true;
+            label27.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label27.ForeColor = Color.White;
+            label27.Location = new Point(768, 19);
+            label27.Name = "label27";
+            label27.Size = new Size(46, 17);
+            label27.TabIndex = 23;
+            label27.Text = "Precio";
+            // 
+            // tbxtotal
+            // 
+            tbxtotal.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tbxtotal.Location = new Point(918, 39);
+            tbxtotal.Name = "tbxtotal";
+            tbxtotal.Size = new Size(144, 33);
+            tbxtotal.TabIndex = 22;
+            // 
+            // tbxprecio
+            // 
+            tbxprecio.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tbxprecio.Location = new Point(768, 39);
+            tbxprecio.Name = "tbxprecio";
+            tbxprecio.Size = new Size(144, 33);
+            tbxprecio.TabIndex = 21;
+            // 
+            // fechavencimiento_box
+            // 
+            fechavencimiento_box.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            fechavencimiento_box.Location = new Point(321, 39);
+            fechavencimiento_box.Name = "fechavencimiento_box";
+            fechavencimiento_box.Size = new Size(144, 33);
+            fechavencimiento_box.TabIndex = 20;
+            // 
+            // label26
+            // 
+            label26.AutoSize = true;
+            label26.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label26.ForeColor = Color.White;
+            label26.Location = new Point(618, 19);
+            label26.Name = "label26";
+            label26.Size = new Size(43, 17);
+            label26.TabIndex = 19;
+            label26.Text = "Costo";
+            // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label25.ForeColor = Color.White;
+            label25.Location = new Point(471, 19);
+            label25.Name = "label25";
+            label25.Size = new Size(63, 17);
+            label25.TabIndex = 18;
+            label25.Text = "Cantidad";
+            // 
+            // label24
+            // 
+            label24.AutoSize = true;
+            label24.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label24.ForeColor = Color.White;
+            label24.Location = new Point(321, 19);
+            label24.Name = "label24";
+            label24.Size = new Size(142, 17);
+            label24.TabIndex = 17;
+            label24.Text = "Fecha de vencimiento";
+            // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label23.ForeColor = Color.White;
+            label23.Location = new Point(170, 19);
+            label23.Name = "label23";
+            label23.Size = new Size(145, 17);
+            label23.TabIndex = 16;
+            label23.Text = " Nombre del producto";
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label22.ForeColor = Color.White;
+            label22.Location = new Point(21, 13);
+            label22.Name = "label22";
+            label22.Size = new Size(56, 17);
+            label22.TabIndex = 15;
+            label22.Text = " Codigo";
+            // 
+            // tbxcant
+            // 
+            tbxcant.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tbxcant.Location = new Point(618, 39);
+            tbxcant.Name = "tbxcant";
+            tbxcant.Size = new Size(144, 33);
+            tbxcant.TabIndex = 5;
+            // 
+            // tbxcantidad
+            // 
+            tbxcantidad.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tbxcantidad.Location = new Point(471, 39);
+            tbxcantidad.Name = "tbxcantidad";
+            tbxcantidad.Size = new Size(144, 33);
+            tbxcantidad.TabIndex = 4;
+            // 
+            // tbxnomprod
+            // 
+            tbxnomprod.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tbxnomprod.Location = new Point(171, 39);
+            tbxnomprod.Name = "tbxnomprod";
+            tbxnomprod.Size = new Size(144, 33);
+            tbxnomprod.TabIndex = 2;
+            // 
+            // tbxcodigo
+            // 
+            tbxcodigo.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tbxcodigo.Location = new Point(21, 39);
+            tbxcodigo.Name = "tbxcodigo";
+            tbxcodigo.Size = new Size(144, 33);
+            tbxcodigo.TabIndex = 1;
+            // 
+            // guardarentrada_bttn
+            // 
+            guardarentrada_bttn.Location = new Point(915, 304);
+            guardarentrada_bttn.Name = "guardarentrada_bttn";
+            guardarentrada_bttn.Size = new Size(171, 52);
+            guardarentrada_bttn.TabIndex = 0;
+            guardarentrada_bttn.Text = " Guardar";
+            guardarentrada_bttn.UseVisualStyleBackColor = true;
             // 
             // panel9
             // 
@@ -674,52 +827,12 @@
             panel9.Controls.Add(historial);
             panel9.Controls.Add(label19);
             panel9.Controls.Add(label18);
-            panel9.Controls.Add(comboBox1);
-            panel9.Controls.Add(textBox1);
+            panel9.Controls.Add(comboaccionentrada);
+            panel9.Controls.Add(tbxnotaentrada);
             panel9.Location = new Point(0, 0);
             panel9.Name = "panel9";
             panel9.Size = new Size(1169, 118);
             panel9.TabIndex = 1;
-            // 
-            // textBox1
-            // 
-            textBox1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(909, 46);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(240, 39);
-            textBox1.TabIndex = 0;
-            // 
-            // comboBox1
-            // 
-            comboBox1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Entrada de inventario", "Salida de Inventario" });
-            comboBox1.Location = new Point(654, 45);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(227, 40);
-            comboBox1.TabIndex = 1;
-            // 
-            // label18
-            // 
-            label18.AutoSize = true;
-            label18.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label18.ForeColor = Color.White;
-            label18.Location = new Point(654, 13);
-            label18.Name = "label18";
-            label18.Size = new Size(213, 30);
-            label18.TabIndex = 2;
-            label18.Text = "Seleccione su acción";
-            // 
-            // label19
-            // 
-            label19.AutoSize = true;
-            label19.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label19.ForeColor = Color.White;
-            label19.Location = new Point(909, 13);
-            label19.Name = "label19";
-            label19.Size = new Size(62, 30);
-            label19.TabIndex = 3;
-            label19.Text = "Nota";
             // 
             // historial
             // 
@@ -735,18 +848,108 @@
             historial.TabIndex = 14;
             historial.UseVisualStyleBackColor = true;
             // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label19.ForeColor = Color.White;
+            label19.Location = new Point(909, 13);
+            label19.Name = "label19";
+            label19.Size = new Size(62, 30);
+            label19.TabIndex = 3;
+            label19.Text = "Nota";
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label18.ForeColor = Color.White;
+            label18.Location = new Point(654, 13);
+            label18.Name = "label18";
+            label18.Size = new Size(213, 30);
+            label18.TabIndex = 2;
+            label18.Text = "Seleccione su acción";
+            // 
+            // comboaccionentrada
+            // 
+            comboaccionentrada.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            comboaccionentrada.FormattingEnabled = true;
+            comboaccionentrada.Items.AddRange(new object[] { "Entrada de inventario", "Salida de Inventario" });
+            comboaccionentrada.Location = new Point(654, 45);
+            comboaccionentrada.Name = "comboaccionentrada";
+            comboaccionentrada.Size = new Size(227, 40);
+            comboaccionentrada.TabIndex = 1;
+            // 
+            // tbxnotaentrada
+            // 
+            tbxnotaentrada.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tbxnotaentrada.Location = new Point(909, 46);
+            tbxnotaentrada.Name = "tbxnotaentrada";
+            tbxnotaentrada.Size = new Size(240, 39);
+            tbxnotaentrada.TabIndex = 0;
+            // 
+            // tabPage4
+            // 
+            tabPage4.Controls.Add(panel12);
+            tabPage4.Controls.Add(panel10);
+            tabPage4.Location = new Point(4, 24);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Padding = new Padding(3);
+            tabPage4.Size = new Size(1169, 561);
+            tabPage4.TabIndex = 3;
+            tabPage4.Text = "Facturacion";
+            tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // panel12
+            // 
+            panel12.BackColor = Color.FromArgb(86, 97, 48);
+            panel12.Controls.Add(dataGridView1);
+            panel12.Controls.Add(fac_bttn);
+            panel12.Location = new Point(30, 150);
+            panel12.Name = "panel12";
+            panel12.Size = new Size(1095, 359);
+            panel12.TabIndex = 3;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(29, 25);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(998, 262);
+            dataGridView1.TabIndex = 1;
+            // 
+            // fac_bttn
+            // 
+            fac_bttn.Location = new Point(915, 304);
+            fac_bttn.Name = "fac_bttn";
+            fac_bttn.Size = new Size(171, 52);
+            fac_bttn.TabIndex = 0;
+            fac_bttn.Text = "Facturar";
+            fac_bttn.UseVisualStyleBackColor = true;
+            // 
             // panel10
             // 
             panel10.BackColor = Color.FromArgb(45, 84, 138);
             panel10.Controls.Add(label29);
             panel10.Controls.Add(button3);
             panel10.Controls.Add(label21);
-            panel10.Controls.Add(comboBox2);
-            panel10.Controls.Add(textBox2);
+            panel10.Controls.Add(comboaccionfac);
+            panel10.Controls.Add(tbxnotafacturacion);
             panel10.Location = new Point(3, 0);
             panel10.Name = "panel10";
             panel10.Size = new Size(1169, 118);
             panel10.TabIndex = 2;
+            // 
+            // label29
+            // 
+            label29.AutoSize = true;
+            label29.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label29.ForeColor = Color.White;
+            label29.Location = new Point(909, 13);
+            label29.Name = "label29";
+            label29.Size = new Size(62, 30);
+            label29.TabIndex = 15;
+            label29.Text = "Nota";
             // 
             // button3
             // 
@@ -773,226 +976,23 @@
             label21.TabIndex = 2;
             label21.Text = "Seleccione su acción";
             // 
-            // comboBox2
+            // comboaccionfac
             // 
-            comboBox2.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Items.AddRange(new object[] { "Entrada de inventario", "Salida de Inventario" });
-            comboBox2.Location = new Point(654, 45);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(227, 40);
-            comboBox2.TabIndex = 1;
+            comboaccionfac.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            comboaccionfac.FormattingEnabled = true;
+            comboaccionfac.Items.AddRange(new object[] { "Entrada de inventario", "Salida de Inventario" });
+            comboaccionfac.Location = new Point(654, 45);
+            comboaccionfac.Name = "comboaccionfac";
+            comboaccionfac.Size = new Size(227, 40);
+            comboaccionfac.TabIndex = 1;
             // 
-            // textBox2
+            // tbxnotafacturacion
             // 
-            textBox2.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(909, 46);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(240, 39);
-            textBox2.TabIndex = 0;
-            // 
-            // panel11
-            // 
-            panel11.BackColor = Color.FromArgb(86, 97, 48);
-            panel11.Controls.Add(label28);
-            panel11.Controls.Add(label27);
-            panel11.Controls.Add(textBox8);
-            panel11.Controls.Add(textBox5);
-            panel11.Controls.Add(dateTimePicker1);
-            panel11.Controls.Add(label26);
-            panel11.Controls.Add(label25);
-            panel11.Controls.Add(label24);
-            panel11.Controls.Add(label23);
-            panel11.Controls.Add(label22);
-            panel11.Controls.Add(textBox7);
-            panel11.Controls.Add(textBox6);
-            panel11.Controls.Add(textBox4);
-            panel11.Controls.Add(textBox3);
-            panel11.Controls.Add(button4);
-            panel11.Location = new Point(36, 150);
-            panel11.Name = "panel11";
-            panel11.Size = new Size(1095, 359);
-            panel11.TabIndex = 2;
-            // 
-            // button4
-            // 
-            button4.Location = new Point(915, 304);
-            button4.Name = "button4";
-            button4.Size = new Size(171, 52);
-            button4.TabIndex = 0;
-            button4.Text = " Guardar";
-            button4.UseVisualStyleBackColor = true;
-            // 
-            // textBox3
-            // 
-            textBox3.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox3.Location = new Point(21, 39);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(144, 33);
-            textBox3.TabIndex = 1;
-            // 
-            // textBox4
-            // 
-            textBox4.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox4.Location = new Point(171, 39);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(144, 33);
-            textBox4.TabIndex = 2;
-            // 
-            // textBox6
-            // 
-            textBox6.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox6.Location = new Point(471, 39);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(144, 33);
-            textBox6.TabIndex = 4;
-            // 
-            // textBox7
-            // 
-            textBox7.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox7.Location = new Point(618, 39);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(144, 33);
-            textBox7.TabIndex = 5;
-            // 
-            // label22
-            // 
-            label22.AutoSize = true;
-            label22.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label22.ForeColor = Color.White;
-            label22.Location = new Point(21, 13);
-            label22.Name = "label22";
-            label22.Size = new Size(56, 17);
-            label22.TabIndex = 15;
-            label22.Text = " Codigo";
-            // 
-            // label23
-            // 
-            label23.AutoSize = true;
-            label23.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label23.ForeColor = Color.White;
-            label23.Location = new Point(170, 19);
-            label23.Name = "label23";
-            label23.Size = new Size(145, 17);
-            label23.TabIndex = 16;
-            label23.Text = " Nombre del producto";
-            // 
-            // label24
-            // 
-            label24.AutoSize = true;
-            label24.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label24.ForeColor = Color.White;
-            label24.Location = new Point(321, 19);
-            label24.Name = "label24";
-            label24.Size = new Size(142, 17);
-            label24.TabIndex = 17;
-            label24.Text = "Fecha de vencimiento";
-            // 
-            // label25
-            // 
-            label25.AutoSize = true;
-            label25.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label25.ForeColor = Color.White;
-            label25.Location = new Point(471, 19);
-            label25.Name = "label25";
-            label25.Size = new Size(63, 17);
-            label25.TabIndex = 18;
-            label25.Text = "Cantidad";
-            // 
-            // label26
-            // 
-            label26.AutoSize = true;
-            label26.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label26.ForeColor = Color.White;
-            label26.Location = new Point(618, 19);
-            label26.Name = "label26";
-            label26.Size = new Size(43, 17);
-            label26.TabIndex = 19;
-            label26.Text = "Costo";
-            // 
-            // dateTimePicker1
-            // 
-            dateTimePicker1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dateTimePicker1.Location = new Point(321, 39);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(144, 33);
-            dateTimePicker1.TabIndex = 20;
-            // 
-            // textBox5
-            // 
-            textBox5.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox5.Location = new Point(768, 39);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(144, 33);
-            textBox5.TabIndex = 21;
-            // 
-            // textBox8
-            // 
-            textBox8.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox8.Location = new Point(918, 39);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(144, 33);
-            textBox8.TabIndex = 22;
-            // 
-            // label27
-            // 
-            label27.AutoSize = true;
-            label27.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label27.ForeColor = Color.White;
-            label27.Location = new Point(768, 19);
-            label27.Name = "label27";
-            label27.Size = new Size(46, 17);
-            label27.TabIndex = 23;
-            label27.Text = "Precio";
-            // 
-            // label28
-            // 
-            label28.AutoSize = true;
-            label28.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label28.ForeColor = Color.White;
-            label28.Location = new Point(918, 19);
-            label28.Name = "label28";
-            label28.Size = new Size(39, 17);
-            label28.TabIndex = 24;
-            label28.Text = "Total";
-            // 
-            // panel12
-            // 
-            panel12.BackColor = Color.FromArgb(86, 97, 48);
-            panel12.Controls.Add(dataGridView1);
-            panel12.Controls.Add(fac_bttn);
-            panel12.Location = new Point(30, 150);
-            panel12.Name = "panel12";
-            panel12.Size = new Size(1095, 359);
-            panel12.TabIndex = 3;
-            // 
-            // fac_bttn
-            // 
-            fac_bttn.Location = new Point(915, 304);
-            fac_bttn.Name = "fac_bttn";
-            fac_bttn.Size = new Size(171, 52);
-            fac_bttn.TabIndex = 0;
-            fac_bttn.Text = "Facturar";
-            fac_bttn.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(29, 25);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(998, 262);
-            dataGridView1.TabIndex = 1;
-            // 
-            // label29
-            // 
-            label29.AutoSize = true;
-            label29.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label29.ForeColor = Color.White;
-            label29.Location = new Point(909, 13);
-            label29.Name = "label29";
-            label29.Size = new Size(62, 30);
-            label29.TabIndex = 15;
-            label29.Text = "Nota";
+            tbxnotafacturacion.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tbxnotafacturacion.Location = new Point(909, 46);
+            tbxnotafacturacion.Name = "tbxnotafacturacion";
+            tbxnotafacturacion.Size = new Size(240, 39);
+            tbxnotafacturacion.TabIndex = 0;
             // 
             // menu
             // 
@@ -1033,15 +1033,15 @@
             tabPage1.ResumeLayout(false);
             tabPage2.ResumeLayout(false);
             tabPage3.ResumeLayout(false);
-            tabPage4.ResumeLayout(false);
-            panel9.ResumeLayout(false);
-            panel9.PerformLayout();
-            panel10.ResumeLayout(false);
-            panel10.PerformLayout();
             panel11.ResumeLayout(false);
             panel11.PerformLayout();
+            panel9.ResumeLayout(false);
+            panel9.PerformLayout();
+            tabPage4.ResumeLayout(false);
             panel12.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            panel10.ResumeLayout(false);
+            panel10.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -1096,30 +1096,30 @@
         private Panel panel9;
         private Label label19;
         private Label label18;
-        private ComboBox comboBox1;
-        private TextBox textBox1;
+        private ComboBox comboaccionentrada;
+        private TextBox tbxnotaentrada;
         private Panel panel11;
-        private TextBox textBox6;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private Button button4;
+        private TextBox tbxcantidad;
+        private TextBox tbxnomprod;
+        private TextBox tbxcodigo;
+        private Button guardarentrada_bttn;
         private Button historial;
         private Panel panel10;
         private Button button3;
         private Label label21;
-        private ComboBox comboBox2;
-        private TextBox textBox2;
-        private DateTimePicker dateTimePicker1;
+        private ComboBox comboaccionfac;
+        private TextBox tbxnotafacturacion;
+        private DateTimePicker fechavencimiento_box;
         private Label label26;
         private Label label25;
         private Label label24;
         private Label label23;
         private Label label22;
-        private TextBox textBox7;
+        private TextBox tbxcant;
         private Label label28;
         private Label label27;
-        private TextBox textBox8;
-        private TextBox textBox5;
+        private TextBox tbxtotal;
+        private TextBox tbxprecio;
         private Panel panel12;
         private DataGridView dataGridView1;
         private Button fac_bttn;
