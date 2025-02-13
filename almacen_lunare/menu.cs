@@ -13,8 +13,15 @@ namespace almacen_lunare
         bool Isopen = false;
         private void formsPlot1_Load(object sender, EventArgs e)
         {
-
+           
+            tabControl1.Appearance = TabAppearance.FlatButtons;
+            tabControl1.ItemSize = new Size(0, 1);
+            tabControl1.SizeMode = TabSizeMode.Fixed;
+            
         }
+
+       
+
         public void Createplot()
         {
             double[] xs1 = { 1, 2, 3, 4 };
@@ -60,5 +67,9 @@ namespace almacen_lunare
 
         }
 
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

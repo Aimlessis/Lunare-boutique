@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ismael De Los Santos\\Downloads\\Lunare-boutique\\almacen_lunare\\almacen_lunare.csproj": {}
+    "C:\\Users\\Ismael De Los Santos\\Lunare-boutique\\almacen_lunare\\almacen_lunare.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ismael De Los Santos\\Downloads\\Lunare-boutique\\almacen_lunare\\almacen_lunare.csproj": {
+    "C:\\Users\\Ismael De Los Santos\\Lunare-boutique\\almacen_lunare\\almacen_lunare.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ismael De Los Santos\\Downloads\\Lunare-boutique\\almacen_lunare\\almacen_lunare.csproj",
+        "projectUniqueName": "C:\\Users\\Ismael De Los Santos\\Lunare-boutique\\almacen_lunare\\almacen_lunare.csproj",
         "projectName": "almacen_lunare",
-        "projectPath": "C:\\Users\\Ismael De Los Santos\\Downloads\\Lunare-boutique\\almacen_lunare\\almacen_lunare.csproj",
+        "projectPath": "C:\\Users\\Ismael De Los Santos\\Lunare-boutique\\almacen_lunare\\almacen_lunare.csproj",
         "packagesPath": "C:\\Users\\Ismael De Los Santos\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ismael De Los Santos\\Downloads\\Lunare-boutique\\almacen_lunare\\obj\\",
+        "outputPath": "C:\\Users\\Ismael De Los Santos\\Lunare-boutique\\almacen_lunare\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

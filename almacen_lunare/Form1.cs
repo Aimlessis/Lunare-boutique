@@ -9,7 +9,7 @@ namespace Lunare
     public partial class Form1 : Form
     {
         private bool showContrasena = false;
-        string connectionstr = @"Data Source=DESKTOP-M2RKSNG\SQLSQL;Initial Catalog=test;Integrated Security=True;";
+        string connectionstr = @"Data Source=Localhost;Initial Catalog=test;Integrated Security=True;";
 
         public Form1()
         {

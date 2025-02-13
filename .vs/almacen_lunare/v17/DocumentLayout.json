@@ -1,34 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Ismael De Los Santos\\Downloads\\Lunare-boutique\\",
+  "WorkspaceRootPath": "C:\\Users\\Ismael De Los Santos\\Lunare-boutique\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{662DD5A9-4E61-4BBC-8299-F62ED420CE1F}|almacen_lunare\\almacen_lunare.csproj|c:\\users\\ismael de los santos\\downloads\\lunare-boutique\\almacen_lunare\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{662DD5A9-4E61-4BBC-8299-F62ED420CE1F}|almacen_lunare\\almacen_lunare.csproj|solutionrelative:almacen_lunare\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{662DD5A9-4E61-4BBC-8299-F62ED420CE1F}|almacen_lunare\\almacen_lunare.csproj|c:\\users\\ismael de los santos\\downloads\\lunare-boutique\\almacen_lunare\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{662DD5A9-4E61-4BBC-8299-F62ED420CE1F}|almacen_lunare\\almacen_lunare.csproj|solutionrelative:almacen_lunare\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{662DD5A9-4E61-4BBC-8299-F62ED420CE1F}|almacen_lunare\\almacen_lunare.csproj|C:\\Users\\Ismael De Los Santos\\Downloads\\Lunare-boutique\\almacen_lunare\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{662DD5A9-4E61-4BBC-8299-F62ED420CE1F}|almacen_lunare\\almacen_lunare.csproj|c:\\users\\ismael de los santos\\lunare-boutique\\almacen_lunare\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{662DD5A9-4E61-4BBC-8299-F62ED420CE1F}|almacen_lunare\\almacen_lunare.csproj|solutionrelative:almacen_lunare\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{662DD5A9-4E61-4BBC-8299-F62ED420CE1F}|almacen_lunare\\almacen_lunare.csproj|c:\\users\\ismael de los santos\\downloads\\lunare-boutique\\almacen_lunare\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{662DD5A9-4E61-4BBC-8299-F62ED420CE1F}|almacen_lunare\\almacen_lunare.csproj|solutionrelative:almacen_lunare\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{662DD5A9-4E61-4BBC-8299-F62ED420CE1F}|almacen_lunare\\almacen_lunare.csproj|c:\\users\\ismael de los santos\\downloads\\lunare-boutique\\almacen_lunare\\almacen_lunare.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{662DD5A9-4E61-4BBC-8299-F62ED420CE1F}|almacen_lunare\\almacen_lunare.csproj|solutionrelative:almacen_lunare\\almacen_lunare.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{662DD5A9-4E61-4BBC-8299-F62ED420CE1F}|almacen_lunare\\almacen_lunare.csproj|C:\\Users\\Ismael De Los Santos\\Downloads\\Lunare-boutique\\almacen_lunare\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{662DD5A9-4E61-4BBC-8299-F62ED420CE1F}|almacen_lunare\\almacen_lunare.csproj|solutionrelative:almacen_lunare\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{662DD5A9-4E61-4BBC-8299-F62ED420CE1F}|almacen_lunare\\almacen_lunare.csproj|c:\\users\\ismael de los santos\\downloads\\lunare-boutique\\almacen_lunare\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{662DD5A9-4E61-4BBC-8299-F62ED420CE1F}|almacen_lunare\\almacen_lunare.csproj|solutionrelative:almacen_lunare\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{662DD5A9-4E61-4BBC-8299-F62ED420CE1F}|almacen_lunare\\almacen_lunare.csproj|c:\\users\\ismael de los santos\\lunare-boutique\\almacen_lunare\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{662DD5A9-4E61-4BBC-8299-F62ED420CE1F}|almacen_lunare\\almacen_lunare.csproj|solutionrelative:almacen_lunare\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,93 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "menu.cs",
-              "DocumentMoniker": "C:\\Users\\Ismael De Los Santos\\Downloads\\Lunare-boutique\\almacen_lunare\\menu.cs",
+              "DocumentMoniker": "C:\\Users\\Ismael De Los Santos\\Lunare-boutique\\almacen_lunare\\menu.cs",
               "RelativeDocumentMoniker": "almacen_lunare\\menu.cs",
-              "ToolTip": "C:\\Users\\Ismael De Los Santos\\Downloads\\Lunare-boutique\\almacen_lunare\\menu.cs",
+              "ToolTip": "C:\\Users\\Ismael De Los Santos\\Lunare-boutique\\almacen_lunare\\menu.cs",
               "RelativeToolTip": "almacen_lunare\\menu.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAAADoAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T02:09:12.825Z",
-              "IsPinned": true,
+              "WhenOpened": "2025-02-13T22:40:01.894Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Form1.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\Ismael De Los Santos\\Downloads\\Lunare-boutique\\almacen_lunare\\Form1.Designer.cs",
-              "RelativeDocumentMoniker": "almacen_lunare\\Form1.Designer.cs",
-              "ToolTip": "C:\\Users\\Ismael De Los Santos\\Downloads\\Lunare-boutique\\almacen_lunare\\Form1.Designer.cs",
-              "RelativeToolTip": "almacen_lunare\\Form1.Designer.cs",
-              "ViewState": "AgIAAGoAAAAAAAAAAAArwH0AAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T15:31:59.531Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "almacen_lunare.csproj",
-              "DocumentMoniker": "C:\\Users\\Ismael De Los Santos\\Downloads\\Lunare-boutique\\almacen_lunare\\almacen_lunare.csproj",
-              "RelativeDocumentMoniker": "almacen_lunare\\almacen_lunare.csproj",
-              "ToolTip": "C:\\Users\\Ismael De Los Santos\\Downloads\\Lunare-boutique\\almacen_lunare\\almacen_lunare.csproj",
-              "RelativeToolTip": "almacen_lunare\\almacen_lunare.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-02-06T15:13:26.209Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Ismael De Los Santos\\Downloads\\Lunare-boutique\\almacen_lunare\\Program.cs",
-              "RelativeDocumentMoniker": "almacen_lunare\\Program.cs",
-              "ToolTip": "C:\\Users\\Ismael De Los Santos\\Downloads\\Lunare-boutique\\almacen_lunare\\Program.cs",
-              "RelativeToolTip": "almacen_lunare\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T14:58:14.11Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Ismael De Los Santos\\Downloads\\Lunare-boutique\\almacen_lunare\\Form1.cs",
-              "RelativeDocumentMoniker": "almacen_lunare\\Form1.cs",
-              "ToolTip": "C:\\Users\\Ismael De Los Santos\\Downloads\\Lunare-boutique\\almacen_lunare\\Form1.cs [Design]",
-              "RelativeToolTip": "almacen_lunare\\Form1.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T14:49:40.201Z",
-              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\Ismael De Los Santos\\Downloads\\Lunare-boutique\\almacen_lunare\\Form1.cs",
-              "RelativeDocumentMoniker": "almacen_lunare\\Form1.cs",
-              "ToolTip": "C:\\Users\\Ismael De Los Santos\\Downloads\\Lunare-boutique\\almacen_lunare\\Form1.cs",
-              "RelativeToolTip": "almacen_lunare\\Form1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T14:47:03.693Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "menu.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Ismael De Los Santos\\Downloads\\Lunare-boutique\\almacen_lunare\\menu.cs",
+              "Title": "menu.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Ismael De Los Santos\\Lunare-boutique\\almacen_lunare\\menu.cs",
               "RelativeDocumentMoniker": "almacen_lunare\\menu.cs",
-              "ToolTip": "C:\\Users\\user\\Lunare-boutique\\almacen_lunare\\menu.cs [Dise\u00F1o]",
-              "RelativeToolTip": "..\\..\\..\\user\\Lunare-boutique\\almacen_lunare\\menu.cs [Dise\u00F1o]",
+              "ToolTip": "C:\\Users\\Ismael De Los Santos\\Lunare-boutique\\almacen_lunare\\menu.cs [Design]",
+              "RelativeToolTip": "almacen_lunare\\menu.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T02:41:03.029Z"
+              "WhenOpened": "2025-02-13T22:35:12.988Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }
