@@ -98,14 +98,26 @@
             tbxnotaentrada = new TextBox();
             tabPage4 = new TabPage();
             panel12 = new Panel();
+            label20 = new Label();
             dataGridView1 = new DataGridView();
             fac_bttn = new Button();
+            btnGenerateInvoice = new Button();
+            txtTotalAmount = new TextBox();
             panel10 = new Panel();
             label29 = new Label();
+            label30 = new Label();
+            label33 = new Label();
+            label31 = new Label();
             button3 = new Button();
+            txtUnitPrice = new TextBox();
             label21 = new Label();
             comboaccionfac = new ComboBox();
+            numQuantity = new NumericUpDown();
             tbxnotafacturacion = new TextBox();
+            cboProduct = new ComboBox();
+            label32 = new Label();
+            btnAddItem = new Button();
+            cboCustomer = new ComboBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
@@ -131,6 +143,7 @@
             panel12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numQuantity).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -486,7 +499,7 @@
             panel6.Controls.Add(pedidos_bttn);
             panel6.Controls.Add(Home_bttn);
             panel6.Enabled = false;
-            panel6.Location = new Point(87, 117);
+            panel6.Location = new Point(1155, 32);
             panel6.Name = "panel6";
             panel6.Size = new Size(200, 534);
             panel6.TabIndex = 5;
@@ -903,38 +916,82 @@
             // panel12
             // 
             panel12.BackColor = Color.FromArgb(86, 97, 48);
+            panel12.Controls.Add(label20);
             panel12.Controls.Add(dataGridView1);
             panel12.Controls.Add(fac_bttn);
-            panel12.Location = new Point(30, 150);
+            panel12.Controls.Add(btnGenerateInvoice);
+            panel12.Controls.Add(txtTotalAmount);
+            panel12.Location = new Point(30, 142);
             panel12.Name = "panel12";
-            panel12.Size = new Size(1095, 359);
+            panel12.Size = new Size(1119, 396);
             panel12.TabIndex = 3;
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Location = new Point(723, 329);
+            label20.Margin = new Padding(4, 0, 4, 0);
+            label20.Name = "label20";
+            label20.Size = new Size(71, 15);
+            label20.TabIndex = 50;
+            label20.Text = "Monto Total";
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(29, 25);
+            dataGridView1.Location = new Point(29, 49);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(998, 262);
             dataGridView1.TabIndex = 1;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // fac_bttn
             // 
-            fac_bttn.Location = new Point(915, 304);
+            fac_bttn.Location = new Point(945, 329);
             fac_bttn.Name = "fac_bttn";
             fac_bttn.Size = new Size(171, 52);
             fac_bttn.TabIndex = 0;
             fac_bttn.Text = "Facturar";
             fac_bttn.UseVisualStyleBackColor = true;
+            fac_bttn.Click += fac_bttn_Click;
+            // 
+            // btnGenerateInvoice
+            // 
+            btnGenerateInvoice.Location = new Point(811, 360);
+            btnGenerateInvoice.Margin = new Padding(4, 3, 4, 3);
+            btnGenerateInvoice.Name = "btnGenerateInvoice";
+            btnGenerateInvoice.Size = new Size(117, 27);
+            btnGenerateInvoice.TabIndex = 45;
+            btnGenerateInvoice.Text = "Generar Factura";
+            btnGenerateInvoice.UseVisualStyleBackColor = true;
+            // 
+            // txtTotalAmount
+            // 
+            txtTotalAmount.Location = new Point(811, 326);
+            txtTotalAmount.Margin = new Padding(4, 3, 4, 3);
+            txtTotalAmount.Name = "txtTotalAmount";
+            txtTotalAmount.ReadOnly = true;
+            txtTotalAmount.Size = new Size(116, 23);
+            txtTotalAmount.TabIndex = 44;
             // 
             // panel10
             // 
             panel10.BackColor = Color.FromArgb(45, 84, 138);
             panel10.Controls.Add(label29);
+            panel10.Controls.Add(label30);
+            panel10.Controls.Add(panel6);
+            panel10.Controls.Add(label33);
+            panel10.Controls.Add(label31);
             panel10.Controls.Add(button3);
+            panel10.Controls.Add(txtUnitPrice);
             panel10.Controls.Add(label21);
             panel10.Controls.Add(comboaccionfac);
+            panel10.Controls.Add(numQuantity);
             panel10.Controls.Add(tbxnotafacturacion);
+            panel10.Controls.Add(cboProduct);
+            panel10.Controls.Add(label32);
+            panel10.Controls.Add(btnAddItem);
+            panel10.Controls.Add(cboCustomer);
             panel10.Location = new Point(3, 0);
             panel10.Name = "panel10";
             panel10.Size = new Size(1169, 118);
@@ -951,6 +1008,36 @@
             label29.TabIndex = 15;
             label29.Text = "Nota";
             // 
+            // label30
+            // 
+            label30.AutoSize = true;
+            label30.Location = new Point(442, 65);
+            label30.Margin = new Padding(4, 0, 4, 0);
+            label30.Name = "label30";
+            label30.Size = new Size(85, 15);
+            label30.TabIndex = 49;
+            label30.Text = "Precio Unitario";
+            // 
+            // label33
+            // 
+            label33.AutoSize = true;
+            label33.Location = new Point(98, 13);
+            label33.Margin = new Padding(4, 0, 4, 0);
+            label33.Name = "label33";
+            label33.Size = new Size(44, 15);
+            label33.TabIndex = 46;
+            label33.Text = "Cliente";
+            // 
+            // label31
+            // 
+            label31.AutoSize = true;
+            label31.Location = new Point(348, 65);
+            label31.Margin = new Padding(4, 0, 4, 0);
+            label31.Name = "label31";
+            label31.Size = new Size(55, 15);
+            label31.TabIndex = 48;
+            label31.Text = "Cantidad";
+            // 
             // button3
             // 
             button3.BackgroundImage = (Image)resources.GetObject("button3.BackgroundImage");
@@ -964,6 +1051,14 @@
             button3.Size = new Size(59, 59);
             button3.TabIndex = 14;
             button3.UseVisualStyleBackColor = true;
+            // 
+            // txtUnitPrice
+            // 
+            txtUnitPrice.Location = new Point(442, 84);
+            txtUnitPrice.Margin = new Padding(4, 3, 4, 3);
+            txtUnitPrice.Name = "txtUnitPrice";
+            txtUnitPrice.Size = new Size(93, 23);
+            txtUnitPrice.TabIndex = 42;
             // 
             // label21
             // 
@@ -981,10 +1076,20 @@
             comboaccionfac.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboaccionfac.FormattingEnabled = true;
             comboaccionfac.Items.AddRange(new object[] { "Entrada de inventario", "Salida de Inventario" });
-            comboaccionfac.Location = new Point(654, 45);
+            comboaccionfac.Location = new Point(654, 46);
             comboaccionfac.Name = "comboaccionfac";
             comboaccionfac.Size = new Size(227, 40);
             comboaccionfac.TabIndex = 1;
+            // 
+            // numQuantity
+            // 
+            numQuantity.Location = new Point(348, 84);
+            numQuantity.Margin = new Padding(4, 3, 4, 3);
+            numQuantity.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numQuantity.Name = "numQuantity";
+            numQuantity.Size = new Size(70, 23);
+            numQuantity.TabIndex = 41;
+            numQuantity.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // tbxnotafacturacion
             // 
@@ -993,6 +1098,45 @@
             tbxnotafacturacion.Name = "tbxnotafacturacion";
             tbxnotafacturacion.Size = new Size(240, 39);
             tbxnotafacturacion.TabIndex = 0;
+            // 
+            // cboProduct
+            // 
+            cboProduct.FormattingEnabled = true;
+            cboProduct.Location = new Point(98, 84);
+            cboProduct.Margin = new Padding(4, 3, 4, 3);
+            cboProduct.Name = "cboProduct";
+            cboProduct.Size = new Size(233, 23);
+            cboProduct.TabIndex = 40;
+            // 
+            // label32
+            // 
+            label32.AutoSize = true;
+            label32.Location = new Point(98, 65);
+            label32.Margin = new Padding(4, 0, 4, 0);
+            label32.Name = "label32";
+            label32.Size = new Size(56, 15);
+            label32.TabIndex = 47;
+            label32.Text = "Producto";
+            // 
+            // btnAddItem
+            // 
+            btnAddItem.Location = new Point(547, 81);
+            btnAddItem.Margin = new Padding(4, 3, 4, 3);
+            btnAddItem.Name = "btnAddItem";
+            btnAddItem.Size = new Size(88, 27);
+            btnAddItem.TabIndex = 43;
+            btnAddItem.Text = "Agregar";
+            btnAddItem.UseVisualStyleBackColor = true;
+            btnAddItem.Click += btnAddItem_Click_1;
+            // 
+            // cboCustomer
+            // 
+            cboCustomer.FormattingEnabled = true;
+            cboCustomer.Location = new Point(98, 32);
+            cboCustomer.Margin = new Padding(4, 3, 4, 3);
+            cboCustomer.Name = "cboCustomer";
+            cboCustomer.Size = new Size(233, 23);
+            cboCustomer.TabIndex = 39;
             // 
             // menu
             // 
@@ -1003,7 +1147,6 @@
             ClientSize = new Size(1294, 650);
             ControlBox = false;
             Controls.Add(panel7);
-            Controls.Add(panel6);
             Controls.Add(panel5);
             Controls.Add(tabControl1);
             Name = "menu";
@@ -1039,9 +1182,11 @@
             panel9.PerformLayout();
             tabPage4.ResumeLayout(false);
             panel12.ResumeLayout(false);
+            panel12.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel10.ResumeLayout(false);
             panel10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numQuantity).EndInit();
             ResumeLayout(false);
         }
 
@@ -1124,5 +1269,17 @@
         private DataGridView dataGridView1;
         private Button fac_bttn;
         private Label label29;
+        private Label label20;
+        private Button btnGenerateInvoice;
+        private TextBox txtTotalAmount;
+        private Label label30;
+        private Label label33;
+        private Label label31;
+        private TextBox txtUnitPrice;
+        private NumericUpDown numQuantity;
+        private ComboBox cboProduct;
+        private Label label32;
+        private Button btnAddItem;
+        private ComboBox cboCustomer;
     }
 }

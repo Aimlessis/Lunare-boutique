@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("almacen_lunare")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+78adce99193fe2f8c36e5aa7629517fe9c403c0e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ea705f8493e0b6318626d44d5be7b8f32ef50bd3")]
 [assembly: System.Reflection.AssemblyProductAttribute("almacen_lunare")]
 [assembly: System.Reflection.AssemblyTitleAttribute("almacen_lunare")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

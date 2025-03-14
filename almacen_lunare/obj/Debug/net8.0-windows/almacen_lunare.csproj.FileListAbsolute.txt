@@ -238,3 +238,5 @@ C:\Users\Ismael De Los Santos\Lunare-boutique\almacen_lunare\obj\Debug\net8.0-wi
 C:\Users\Ismael De Los Santos\Lunare-boutique\almacen_lunare\obj\Debug\net8.0-windows\almacen_lunare.pdb
 C:\Users\Ismael De Los Santos\Lunare-boutique\almacen_lunare\obj\Debug\net8.0-windows\almacen_lunare.genruntimeconfig.cache
 C:\Users\Ismael De Los Santos\Lunare-boutique\almacen_lunare\obj\Debug\net8.0-windows\ref\almacen_lunare.dll
+C:\Users\Ismael De Los Santos\Lunare-boutique\almacen_lunare\bin\Debug\net8.0-windows\BouncyCastle.Cryptography.dll
+C:\Users\Ismael De Los Santos\Lunare-boutique\almacen_lunare\bin\Debug\net8.0-windows\itextsharp.dll
