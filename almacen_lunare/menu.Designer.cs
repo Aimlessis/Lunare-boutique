@@ -74,7 +74,9 @@
             tabPage2 = new TabPage();
             panel8 = new Panel();
             tabPage3 = new TabPage();
+            button4 = new Button();
             panel11 = new Panel();
+            dataGridView2 = new DataGridView();
             label28 = new Label();
             label27 = new Label();
             tbxtotal = new TextBox();
@@ -101,7 +103,6 @@
             label20 = new Label();
             dataGridView1 = new DataGridView();
             fac_bttn = new Button();
-            btnGenerateInvoice = new Button();
             txtTotalAmount = new TextBox();
             panel10 = new Panel();
             label29 = new Label();
@@ -110,14 +111,13 @@
             label31 = new Label();
             button3 = new Button();
             txtUnitPrice = new TextBox();
-            label21 = new Label();
-            comboaccionfac = new ComboBox();
             numQuantity = new NumericUpDown();
             tbxnotafacturacion = new TextBox();
             cboProduct = new ComboBox();
             label32 = new Label();
             btnAddItem = new Button();
             cboCustomer = new ComboBox();
+            panellogfact = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
@@ -138,6 +138,7 @@
             tabPage2.SuspendLayout();
             tabPage3.SuspendLayout();
             panel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             panel9.SuspendLayout();
             tabPage4.SuspendLayout();
             panel12.SuspendLayout();
@@ -499,7 +500,7 @@
             panel6.Controls.Add(pedidos_bttn);
             panel6.Controls.Add(Home_bttn);
             panel6.Enabled = false;
-            panel6.Location = new Point(1155, 32);
+            panel6.Location = new Point(1276, 150);
             panel6.Name = "panel6";
             panel6.Size = new Size(200, 534);
             panel6.TabIndex = 5;
@@ -652,13 +653,14 @@
             // panel8
             // 
             panel8.BackColor = Color.FromArgb(97, 54, 48);
-            panel8.Location = new Point(860, 22);
+            panel8.Location = new Point(19, 22);
             panel8.Name = "panel8";
             panel8.Size = new Size(274, 184);
             panel8.TabIndex = 3;
             // 
             // tabPage3
             // 
+            tabPage3.Controls.Add(button4);
             tabPage3.Controls.Add(panel11);
             tabPage3.Controls.Add(panel9);
             tabPage3.Location = new Point(4, 24);
@@ -669,9 +671,21 @@
             tabPage3.Text = " Entrada y salida";
             tabPage3.UseVisualStyleBackColor = true;
             // 
+            // button4
+            // 
+            button4.Location = new Point(36, 124);
+            button4.Margin = new Padding(4, 3, 4, 3);
+            button4.Name = "button4";
+            button4.Size = new Size(285, 27);
+            button4.TabIndex = 44;
+            button4.Text = "Agregar";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            // 
             // panel11
             // 
             panel11.BackColor = Color.FromArgb(86, 97, 48);
+            panel11.Controls.Add(dataGridView2);
             panel11.Controls.Add(label28);
             panel11.Controls.Add(label27);
             panel11.Controls.Add(tbxtotal);
@@ -691,6 +705,15 @@
             panel11.Name = "panel11";
             panel11.Size = new Size(1095, 359);
             panel11.TabIndex = 2;
+            // 
+            // dataGridView2
+            // 
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Location = new Point(31, 96);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.Size = new Size(878, 248);
+            dataGridView2.TabIndex = 25;
+            dataGridView2.CellContentClick += dataGridView2_CellContentClick;
             // 
             // label28
             // 
@@ -877,7 +900,7 @@
             label18.AutoSize = true;
             label18.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label18.ForeColor = Color.White;
-            label18.Location = new Point(654, 13);
+            label18.Location = new Point(611, 13);
             label18.Name = "label18";
             label18.Size = new Size(213, 30);
             label18.TabIndex = 2;
@@ -888,9 +911,9 @@
             comboaccionentrada.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             comboaccionentrada.FormattingEnabled = true;
             comboaccionentrada.Items.AddRange(new object[] { "Entrada de inventario", "Salida de Inventario" });
-            comboaccionentrada.Location = new Point(654, 45);
+            comboaccionentrada.Location = new Point(611, 45);
             comboaccionentrada.Name = "comboaccionentrada";
-            comboaccionentrada.Size = new Size(227, 40);
+            comboaccionentrada.Size = new Size(270, 40);
             comboaccionentrada.TabIndex = 1;
             // 
             // tbxnotaentrada
@@ -903,6 +926,7 @@
             // 
             // tabPage4
             // 
+            tabPage4.Controls.Add(panellogfact);
             tabPage4.Controls.Add(panel12);
             tabPage4.Controls.Add(panel10);
             tabPage4.Location = new Point(4, 24);
@@ -919,7 +943,6 @@
             panel12.Controls.Add(label20);
             panel12.Controls.Add(dataGridView1);
             panel12.Controls.Add(fac_bttn);
-            panel12.Controls.Add(btnGenerateInvoice);
             panel12.Controls.Add(txtTotalAmount);
             panel12.Location = new Point(30, 142);
             panel12.Name = "panel12";
@@ -955,16 +978,6 @@
             fac_bttn.UseVisualStyleBackColor = true;
             fac_bttn.Click += fac_bttn_Click;
             // 
-            // btnGenerateInvoice
-            // 
-            btnGenerateInvoice.Location = new Point(811, 360);
-            btnGenerateInvoice.Margin = new Padding(4, 3, 4, 3);
-            btnGenerateInvoice.Name = "btnGenerateInvoice";
-            btnGenerateInvoice.Size = new Size(117, 27);
-            btnGenerateInvoice.TabIndex = 45;
-            btnGenerateInvoice.Text = "Generar Factura";
-            btnGenerateInvoice.UseVisualStyleBackColor = true;
-            // 
             // txtTotalAmount
             // 
             txtTotalAmount.Location = new Point(811, 326);
@@ -979,13 +992,10 @@
             panel10.BackColor = Color.FromArgb(45, 84, 138);
             panel10.Controls.Add(label29);
             panel10.Controls.Add(label30);
-            panel10.Controls.Add(panel6);
             panel10.Controls.Add(label33);
             panel10.Controls.Add(label31);
             panel10.Controls.Add(button3);
             panel10.Controls.Add(txtUnitPrice);
-            panel10.Controls.Add(label21);
-            panel10.Controls.Add(comboaccionfac);
             panel10.Controls.Add(numQuantity);
             panel10.Controls.Add(tbxnotafacturacion);
             panel10.Controls.Add(cboProduct);
@@ -1045,12 +1055,13 @@
             button3.FlatAppearance.BorderSize = 0;
             button3.FlatAppearance.MouseDownBackColor = Color.FromArgb(45, 84, 138);
             button3.FlatAppearance.MouseOverBackColor = Color.FromArgb(45, 84, 138);
-            button3.FlatStyle = FlatStyle.Flat;
+            button3.FlatStyle = FlatStyle.Popup;
             button3.Location = new Point(8, 26);
             button3.Name = "button3";
             button3.Size = new Size(59, 59);
             button3.TabIndex = 14;
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // txtUnitPrice
             // 
@@ -1059,27 +1070,7 @@
             txtUnitPrice.Name = "txtUnitPrice";
             txtUnitPrice.Size = new Size(93, 23);
             txtUnitPrice.TabIndex = 42;
-            // 
-            // label21
-            // 
-            label21.AutoSize = true;
-            label21.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label21.ForeColor = Color.White;
-            label21.Location = new Point(654, 13);
-            label21.Name = "label21";
-            label21.Size = new Size(213, 30);
-            label21.TabIndex = 2;
-            label21.Text = "Seleccione su acción";
-            // 
-            // comboaccionfac
-            // 
-            comboaccionfac.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            comboaccionfac.FormattingEnabled = true;
-            comboaccionfac.Items.AddRange(new object[] { "Entrada de inventario", "Salida de Inventario" });
-            comboaccionfac.Location = new Point(654, 46);
-            comboaccionfac.Name = "comboaccionfac";
-            comboaccionfac.Size = new Size(227, 40);
-            comboaccionfac.TabIndex = 1;
+            txtUnitPrice.TextChanged += txtUnitPrice_TextChanged;
             // 
             // numQuantity
             // 
@@ -1107,6 +1098,7 @@
             cboProduct.Name = "cboProduct";
             cboProduct.Size = new Size(233, 23);
             cboProduct.TabIndex = 40;
+            cboProduct.SelectedIndexChanged += cboProduct_SelectedIndexChanged_1;
             // 
             // label32
             // 
@@ -1137,6 +1129,18 @@
             cboCustomer.Name = "cboCustomer";
             cboCustomer.Size = new Size(233, 23);
             cboCustomer.TabIndex = 39;
+            cboCustomer.SelectedIndexChanged += cboCustomer_SelectedIndexChanged;
+            // 
+            // panellogfact
+            // 
+            panellogfact.AutoSize = true;
+            panellogfact.BackColor = Color.FromArgb(0, 94, 224);
+            panellogfact.Location = new Point(6, 124);
+            panellogfact.Name = "panellogfact";
+            panellogfact.Size = new Size(309, 414);
+            panellogfact.TabIndex = 14;
+            panellogfact.Visible = false;
+            panellogfact.Paint += panellogfact_Paint;
             // 
             // menu
             // 
@@ -1148,6 +1152,7 @@
             ControlBox = false;
             Controls.Add(panel7);
             Controls.Add(panel5);
+            Controls.Add(panel6);
             Controls.Add(tabControl1);
             Name = "menu";
             SizeGripStyle = SizeGripStyle.Hide;
@@ -1178,9 +1183,11 @@
             tabPage3.ResumeLayout(false);
             panel11.ResumeLayout(false);
             panel11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             panel9.ResumeLayout(false);
             panel9.PerformLayout();
             tabPage4.ResumeLayout(false);
+            tabPage4.PerformLayout();
             panel12.ResumeLayout(false);
             panel12.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -1251,8 +1258,6 @@
         private Button historial;
         private Panel panel10;
         private Button button3;
-        private Label label21;
-        private ComboBox comboaccionfac;
         private TextBox tbxnotafacturacion;
         private DateTimePicker fechavencimiento_box;
         private Label label26;
@@ -1270,7 +1275,6 @@
         private Button fac_bttn;
         private Label label29;
         private Label label20;
-        private Button btnGenerateInvoice;
         private TextBox txtTotalAmount;
         private Label label30;
         private Label label33;
@@ -1281,5 +1285,8 @@
         private Label label32;
         private Button btnAddItem;
         private ComboBox cboCustomer;
+        private Button button4;
+        private DataGridView dataGridView2;
+        private Panel panellogfact;
     }
 }

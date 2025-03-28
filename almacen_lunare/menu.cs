@@ -6,13 +6,20 @@ using System.Reflection.Metadata;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Document = iTextSharp.text.Document;
+using MySqlX.XDevAPI.Relational;
+using System.Runtime.CompilerServices;
+using Label = System.Windows.Forms.Label;
+using System.Windows.Forms;
+using Color = System.Drawing.Color;
+using Font = System.Drawing.Font;
 
 namespace almacen_lunare
 {
     public partial class menu : Form
     {
-        string connectionstr = @"Data Source=Localhost;Initial Catalog=test;Integrated Security=True;";
+        string connectionstr = @"Data Source=Localhost;Initial Catalog=LunareBoutique;Integrated Security=True;";
         private DataTable productTable = new();
+        Mysqlcontrol MSC = new Mysqlcontrol();
         public menu()
         {
 
@@ -21,34 +28,167 @@ namespace almacen_lunare
             LoadCustomers();
             LoadProducts();
             SetupDataGridView();
+            GenerateOrderDetails(panellogfact, dataGridView1);
+
+            //tabControl1.Appearance = TabAppearance.FlatButtons;
+            //tabControl1.ItemSize = new Size(0, 1);
+            //tabControl1.SizeMode = TabSizeMode.Fixed;
 
         }
         bool Isopen = false;
         private void formsPlot1_Load(object sender, EventArgs e)
         {
 
-            tabControl1.Appearance = TabAppearance.FlatButtons;
-            tabControl1.ItemSize = new Size(0, 1);
-            tabControl1.SizeMode = TabSizeMode.Fixed;
+
+
+        }
+
+
+        private void GenerateOrderDetails(Panel parentPanel, DataGridView targetDataGridView)
+        {
+            this.Text = "Detalles de Pedido";
+            this.Size = new Size(600, 500);
+
+            FlowLayoutPanel containerPanel = new FlowLayoutPanel
+            {
+                Dock = DockStyle.Fill,
+                AutoScroll = true,
+                FlowDirection = FlowDirection.TopDown,
+                WrapContents = false
+            };
+
+            parentPanel.Controls.Add(containerPanel);
+
+            using (SqlConnection conn = new SqlConnection(connectionstr))
+            {
+                conn.Open();
+
+                // Get all order IDs
+                SqlCommand cmd = new SqlCommand("SELECT DISTINCT id FROM detalle_pedidos ORDER BY id ASC", conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    int orderId = reader.GetInt32(0);
+
+                    // Create panel for each order
+                    Panel orderPanel = new Panel
+                    {
+                        Width = 550,
+                        Height = 300,
+                        Margin = new Padding(10),
+                        BorderStyle = BorderStyle.FixedSingle,
+                        BackColor = Color.FromArgb(240, 240, 240)
+                    };
+
+                    // Add order ID label
+                    Label orderLabel = new Label
+                    {
+                        Text = $"Pedido #: {orderId}",
+                        Location = new Point(10, 10),
+                        AutoSize = true
+                    };
+                    orderPanel.Controls.Add(orderLabel);
+
+                    Button buttondetailfac = new Button
+                    {
+                        Text = "generar factura"
+
+                    };
+
+                    // Add DataGridView for order items
+                    DataGridView dgv = new DataGridView
+                    {
+                        Width = 530,
+                        Height = 250,
+                        Location = new Point(10, 40),
+                        ReadOnly = true,
+                        AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
+                        DataSource = LoadOrderDetails(orderId) // Load items for this order
+                    };
+
+                   targetDataGridView.DataSource= dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                    orderPanel.Controls.Add(dgv);
+                    containerPanel.Controls.Add(orderPanel);
+                }
+            }
+        }
+
+      
+           private DataTable LoadOrderDetails(int orderId)
+        {
+            DataTable itemsTable;
+            using (SqlConnection conn = new SqlConnection(connectionstr))
+            {
+                conn.Open();
+
+                // Get order header info
+                string headerQuery = @"
+            SELECT 
+                p.id AS PedidoID,
+                p.fecha AS Fecha,
+                p.monto AS Total,
+                p.estado AS Estado,
+                CONCAT(p.nombre, ' ', p.apellido) AS Cliente
+            FROM pedidos p
+            WHERE p.id = @OrderId";
+
+                SqlCommand headerCmd = new SqlCommand(headerQuery, conn);
+                headerCmd.Parameters.AddWithValue("@OrderId", orderId);
+
+                DataTable headerTable = new DataTable();
+                new SqlDataAdapter(headerCmd).Fill(headerTable);
+
+                // Display header info (optional)
+                if (headerTable.Rows.Count > 0)
+                {
+                    DataRow header = headerTable.Rows[0];
+                    //MessageBox.Show($"Cliente: {header["Cliente"]}\nFecha: {header["Fecha"]}\nTotal: {header["Total"]:C}");
+                }
+
+                // Get order items
+                string itemsQuery = @"
+            SELECT 
+                dp.producto AS Producto,
+                dp.precio AS PrecioUnitario,
+                dp.cantidad AS Cantidad,
+                (dp.precio * dp.cantidad) AS TotalLinea
+            FROM detalle_pedidos dp
+            WHERE dp.id_pedido = @OrderId";
+
+                SqlCommand itemsCmd = new SqlCommand(itemsQuery, conn);
+                itemsCmd.Parameters.AddWithValue("@OrderId", orderId);
+
+                itemsTable = new DataTable();
+                new SqlDataAdapter(itemsCmd).Fill(itemsTable);
+
+              
+            }
+            return itemsTable;    
+        }
+
+        private void buttondetailfac(object sender, EventArgs e)
+        {
+
+            
 
         }
 
         public void Createplot()
         {
-            double[] xs1 = { 1, 2, 3, 4 };
-            double[] ys1 = { 5, 10, 7, 13 };
+            MSC.Start(connectionstr);
+            MSC.Query("SELECT SUM(monto) AS Totalmonto from pedidos");
+            decimal result = MSC.DecReader("Totalmonto");
+
+            double[] xs1 = { 1 };
+            double[] ys1 = { (double)result };
+            MSC.Stop();
             var bars1 = formsPlot1.Plot.Add.Bars(xs1, ys1);
-            bars1.LegendText = "Ganancias";
+            bars1.LegendText = "Ganancias del Mes";
 
-            double[] xs2 = { 6, 7, 8, 9 };
-            double[] ys2 = { 7, 12, 9, 15 };
-            var bars2 = formsPlot1.Plot.Add.Bars(xs2, ys2);
-            bars2.LegendText = "Perdidas";
-
-            formsPlot1.Plot.ShowLegend(Alignment.UpperLeft);
-            formsPlot1.Plot.Axes.Margins(bottom: 0);
 
             formsPlot1.Refresh();
+            
         }
         private void LoadCustomers()
         {
@@ -57,10 +197,11 @@ namespace almacen_lunare
                 using (SqlConnection conn = new SqlConnection(connectionstr))
                 {
                     conn.Open();
-                    string query = "SELECT CustomerID, Name FROM Customers";
+                    string query = "SELECT id AS CustomerID, nombre AS Name FROM clientes";
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                     DataTable customerTable = new DataTable();
                     adapter.Fill(customerTable);
+
                     cboCustomer.DataSource = customerTable;
                     cboCustomer.DisplayMember = "Name";
                     cboCustomer.ValueMember = "CustomerID";
@@ -81,9 +222,11 @@ namespace almacen_lunare
             using (SqlConnection conn = new SqlConnection(connectionstr))
             {
                 conn.Open();
-                string query = "SELECT ProductID, Name, Price FROM Products";
+                string query = "SELECT id AS ProductID, nombre AS Name, precio AS Price FROM productos";
                 SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+                DataTable productTable = new DataTable();
                 adapter.Fill(productTable);
+
                 cboProduct.DataSource = productTable;
                 cboProduct.DisplayMember = "Name";
                 cboProduct.ValueMember = "ProductID";
@@ -92,20 +235,22 @@ namespace almacen_lunare
 
         private void SetupDataGridView()
         {
-            dataGridView1.Columns.Add("ProductID", "Product ID");
-            dataGridView1.Columns.Add("ProductName", "Product Name");
-            dataGridView1.Columns.Add("Quantity", "Quantity");
-            dataGridView1.Columns.Add("UnitPrice", "Unit Price");
-            dataGridView1.Columns.Add("Total", "Total");
+            dataGridView1.Columns.Clear();
+            dataGridView1.Columns.Add("id", "ID");
+            dataGridView1.Columns.Add("nombre", "Product Name");
+            dataGridView1.Columns.Add("precio", "Price");
+            dataGridView1.Columns.Add("cantidad", "Quantity"); // Changed from "In Stock" to match usage
+            dataGridView1.Columns.Add("total", "Total"); // Added missing total column
+
         }
         private void UpdateTotalAmount()
         {
             decimal total = 0;
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                if (row.Cells["Total"].Value != null)
+                if (row.Cells["precio"].Value != null)
                 {
-                    total += Convert.ToDecimal(row.Cells["Total"].Value);
+                    total += Convert.ToDecimal(row.Cells["precio"].Value);
                 }
             }
             txtTotalAmount.Text = total.ToString("C");
@@ -138,10 +283,10 @@ namespace almacen_lunare
             {
                 if (!row.IsNewRow)
                 {
-                    table.AddCell(row.Cells["ProductName"].Value.ToString());
-                    table.AddCell(row.Cells["Quantity"].Value.ToString());
-                    table.AddCell($"${Convert.ToDecimal(row.Cells["UnitPrice"].Value):F2}");
-                    table.AddCell($"${Convert.ToDecimal(row.Cells["Total"].Value):F2}");
+                    table.AddCell(row.Cells["nombre"].Value?.ToString() ?? "N/A");
+                    table.AddCell(row.Cells["cantidad"].Value?.ToString() ?? "0");
+                    table.AddCell($"${Convert.ToDecimal(row.Cells["precio"].Value ?? 0):F2}");
+                    table.AddCell($"${Convert.ToDecimal(row.Cells["total"].Value ?? 0):F2}");
                 }
             }
 
@@ -163,27 +308,28 @@ namespace almacen_lunare
         }
         private void btnAddItem_Click(object sender, EventArgs e)
         {
-           
+
         }
 
-        private void cboProduct_SelectedIndexChanged(object sender, EventArgs e)
+        private void rroduct_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboProduct.SelectedIndex != -1)
             {
                 DataRowView selectedRow = (DataRowView)cboProduct.SelectedItem;
-                txtUnitPrice.Text = selectedRow["Price"].ToString();
+                txtUnitPrice.Text = selectedRow["precio"].ToString();
             }
         }
 
         private void fac_bttn_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.Rows.Count == 0 || dataGridView1.Rows[0].Cells["ProductID"].Value == null)
+            if (dataGridView1.Rows.Count == 0 || dataGridView1.Rows[0].Cells["id"].Value == null)
             {
                 MessageBox.Show("Por favor, añada artículos a la factura.");
                 return;
             }
 
-            int customerId = (int)cboCustomer.SelectedValue;
+            // Get customer ID from combobox
+            int clienteId = (int)cboCustomer.SelectedValue;
             decimal totalAmount = decimal.Parse(txtTotalAmount.Text.Replace("$", "").Replace(",", ""));
 
             using (SqlConnection conn = new SqlConnection(connectionstr))
@@ -194,57 +340,106 @@ namespace almacen_lunare
                 {
                     transaction = conn.BeginTransaction();
 
-                    // Insert invoice
-                    string invoiceQuery = "INSERT INTO Invoices (CustomerID, InvoiceDate, TotalAmount) VALUES (@CustomerID, @InvoiceDate, @TotalAmount); SELECT SCOPE_IDENTITY();";
-                    SqlCommand invoiceCmd = new SqlCommand(invoiceQuery, conn, transaction);
-                    invoiceCmd.Parameters.AddWithValue("@CustomerID", customerId);
-                    invoiceCmd.Parameters.AddWithValue("@InvoiceDate", DateTime.Now);
-                    invoiceCmd.Parameters.AddWithValue("@TotalAmount", totalAmount);
-                    int invoiceId = Convert.ToInt32(invoiceCmd.ExecuteScalar());
+                    // 1. Insert into pedidos table (your invoices table)
+                    string pedidoQuery = @"INSERT INTO pedidos (
+                                id_transaccion, 
+                                monto, 
+                                estado, 
+                                fecha,
+                                email,
+                                nombre,
+                                apellido,
+                                direccion,
+                                ciudad,
+                                email_user,
+                                proceso
+                              ) VALUES (
+                                @IdTransaccion, 
+                                @Monto, 
+                                'Completado', 
+                                @Fecha,
+                                (SELECT correo FROM clientes WHERE id = @ClienteId),
+                                (SELECT nombre FROM clientes WHERE id = @ClienteId),
+                                '',
+                                '',
+                                '',
+                                (SELECT correo FROM clientes WHERE id = @ClienteId),
+                                '1'
+                              );
+                              SELECT SCOPE_IDENTITY();";
 
-                    // Insert invoice items
-                    string itemQuery = "INSERT INTO InvoiceItems (InvoiceID, ProductID, Quantity, UnitPrice) VALUES (@InvoiceID, @ProductID, @Quantity, @UnitPrice)";
-                    SqlCommand itemCmd = new SqlCommand(itemQuery, conn, transaction);
-                    itemCmd.Parameters.Add("@InvoiceID", SqlDbType.Int);
-                    itemCmd.Parameters.Add("@ProductID", SqlDbType.Int);
-                    itemCmd.Parameters.Add("@Quantity", SqlDbType.Int);
-                    itemCmd.Parameters.Add("@UnitPrice", SqlDbType.Decimal);
+                    SqlCommand pedidoCmd = new SqlCommand(pedidoQuery, conn, transaction);
+                    pedidoCmd.Parameters.AddWithValue("@IdTransaccion", Guid.NewGuid().ToString());
+                    pedidoCmd.Parameters.AddWithValue("@Monto", totalAmount);
+                    pedidoCmd.Parameters.AddWithValue("@Fecha", DateTime.Now);
+                    pedidoCmd.Parameters.AddWithValue("@ClienteId", clienteId);
 
+                    int pedidoId = Convert.ToInt32(pedidoCmd.ExecuteScalar());
+
+                    // 2. Insert into detalle_pedidos (your invoice items)
+                    string detalleQuery = @"INSERT INTO detalle_pedidos (
+                                  producto, 
+                                  precio, 
+                                  cantidad, 
+                                  id_pedido
+                               ) VALUES (
+                                  @Producto, 
+                                  @Precio, 
+                                  @Cantidad, 
+                                  @IdPedido
+                               )";
+
+                    SqlCommand detalleCmd = new SqlCommand(detalleQuery, conn, transaction);
+                    detalleCmd.Parameters.Add("@Producto", SqlDbType.NVarChar, 255);
+                    detalleCmd.Parameters.Add("@Precio", SqlDbType.Decimal);
+                    detalleCmd.Parameters.Add("@Cantidad", SqlDbType.Int);
+                    detalleCmd.Parameters.Add("@IdPedido", SqlDbType.Int);
+
+                    // 3. Process each row in the DataGridView
                     foreach (DataGridViewRow row in dataGridView1.Rows)
                     {
-                        if (!row.IsNewRow && row.Cells["ProductID"].Value != null)
+                        if (!row.IsNewRow && row.Cells["id"].Value != null)
                         {
-                            itemCmd.Parameters["@InvoiceID"].Value = invoiceId;
-                            itemCmd.Parameters["@ProductID"].Value = Convert.ToInt32(row.Cells["ProductID"].Value);
-                            itemCmd.Parameters["@Quantity"].Value = Convert.ToInt32(row.Cells["Quantity"].Value);
-                            itemCmd.Parameters["@UnitPrice"].Value = Convert.ToDecimal(row.Cells["UnitPrice"].Value);
-                            itemCmd.ExecuteNonQuery();
+                            // Get product name from the grid or you could query it:
+                            string productName = row.Cells["nombre"].Value.ToString();
+
+                            detalleCmd.Parameters["@Producto"].Value = productName;
+                            detalleCmd.Parameters["@Precio"].Value = Convert.ToDecimal(row.Cells["precio"].Value);
+                            detalleCmd.Parameters["@Cantidad"].Value = Convert.ToInt32(row.Cells["cantidad"].Value);
+                            detalleCmd.Parameters["@IdPedido"].Value = pedidoId;
+                            detalleCmd.ExecuteNonQuery();
+
+                            // 4. Update product stock (optional)
+                            string updateStockQuery = "UPDATE productos SET cantidad = cantidad - @Cantidad WHERE id = @ProductId";
+                            SqlCommand updateCmd = new SqlCommand(updateStockQuery, conn, transaction);
+                            updateCmd.Parameters.AddWithValue("@Cantidad", Convert.ToInt32(row.Cells["cantidad"].Value));
+                            updateCmd.Parameters.AddWithValue("@ProductId", Convert.ToInt32(row.Cells["id"].Value));
+                            updateCmd.ExecuteNonQuery();
                         }
                     }
 
                     transaction.Commit();
-                    GeneratePDF(invoiceId, 800, 800);
+                    GeneratePDF(pedidoId, 800, 800);
                     MessageBox.Show("Factura generada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    // Removemos la llamada a ClearInvoice() para no borrar los datos
-                    // ClearInvoice();
                 }
                 catch (Exception ex)
                 {
-                    if (transaction != null)
-                    {
-                        try
-                        {
-                            transaction.Rollback();
-                        }
-                        catch (Exception rollbackEx)
-                        {
-                            MessageBox.Show("Error al revertir la transacción: " + rollbackEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    MessageBox.Show("Error al generar la factura: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //transaction?.Rollback();
+                    MessageBox.Show($"Error al procesar la factura: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
+
+        // Helper method to update product stock
+        private void UpdateProductStock(int productId, int quantitySold, SqlConnection conn, SqlTransaction transaction)
+        {
+            string updateQuery = "UPDATE productos SET cantidad = cantidad - @Quantity WHERE id = @ProductId";
+            SqlCommand updateCmd = new SqlCommand(updateQuery, conn, transaction);
+            updateCmd.Parameters.AddWithValue("@Quantity", quantitySold);
+            updateCmd.Parameters.AddWithValue("@ProductId", productId);
+            updateCmd.ExecuteNonQuery();
+        }
+
 
 
         private void extendmenu_Click(object sender, EventArgs e)
@@ -263,6 +458,21 @@ namespace almacen_lunare
                 Isopen = false;
             }
 
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if(!Isopen)
+            {
+                Isopen = true;
+                panellogfact.Enabled = true;
+                panellogfact.Visible = true;
+            }
+            else
+            {
+                panellogfact.Enabled = false;
+                panellogfact.Visible = false;
+                Isopen = false;
+            }
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -288,12 +498,51 @@ namespace almacen_lunare
         {
             int productId = (int)cboProduct.SelectedValue;
             string productName = cboProduct.Text;
-            int quantity = (int)numQuantity.Value;
-            decimal unitPrice = decimal.Parse(txtUnitPrice.Text);
-            decimal total = quantity * unitPrice;
+            decimal quantity = decimal.Parse(txtUnitPrice.Text);
+            int unitPrice = (int)numQuantity.Value;
 
-            dataGridView1.Rows.Add(productId, productName, quantity, unitPrice, total);
-            UpdateTotalAmount();
+            if (unitPrice != null)
+            {
+                decimal total = quantity * unitPrice;
+
+                dataGridView1.Rows.Add(productId, productName, quantity, unitPrice, total);
+                UpdateTotalAmount();
+                return;
+            }
+
+            MessageBox.Show("Porfavor Ingrese el precio unitario");
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Productwindow PW = new Productwindow();
+            PW.Show();
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void cboCustomer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboProduct_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtUnitPrice_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panellogfact_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
     }
 }
