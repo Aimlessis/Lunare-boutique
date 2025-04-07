@@ -1,24 +1,26 @@
 using ScottPlot;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing.Printing;
 using System.Reflection.Metadata;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Document = iTextSharp.text.Document;
+using MySql.Data.MySqlClient;
 
 namespace almacen_lunare
 {
     public partial class menu : Form
     {
-        string connectionstr = @"Data Source=Localhost;Initial Catalog=test;Integrated Security=True;";
+
+        sensibledata sendata = new sensibledata();
+
         private DataTable productTable = new();
         public menu()
         {
 
             InitializeComponent();
             Createplot();
-            LoadCustomers();
+            LoadPedidos();
             LoadProducts();
             SetupDataGridView();
 
@@ -50,15 +52,15 @@ namespace almacen_lunare
 
             formsPlot1.Refresh();
         }
-        private void LoadCustomers()
+        private void LoadPedidos()
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection(connectionstr))
+                using (MySqlConnection conn = new MySqlConnection(sendata.connectionstr))
                 {
                     conn.Open();
-                    string query = "SELECT CustomerID, Name FROM Customers";
-                    SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+                    string query = "SELECT id, nombre FROM pedidos";
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn);
                     DataTable customerTable = new DataTable();
                     adapter.Fill(customerTable);
                     cboCustomer.DataSource = customerTable;
@@ -66,23 +68,30 @@ namespace almacen_lunare
                     cboCustomer.ValueMember = "CustomerID";
                 }
             }
-            catch (SqlException ex)
+            catch (MySqlException ex)
             {
-                MessageBox.Show($"Error de conexión a la base de datos: {ex.Message}\n\nNúmero de error: {ex.Number}", "Error de Base de Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error de conexión a la base de datos: {ex.Message}\n\nCódigo de error: {ex.Number}",
+                               "Error de Base de Datos",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error inesperado: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error inesperado: {ex.Message}",
+                               "Error",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Error);
             }
         }
 
         private void LoadProducts()
         {
-            using (SqlConnection conn = new SqlConnection(connectionstr))
+            using (MySqlConnection conn = new MySqlConnection(sendata.connectionstr))
             {
                 conn.Open();
-                string query = "SELECT ProductID, Name, Price FROM Products";
-                SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+                string query = "SELECT id AS ProductID, nombre AS Name, precio AS Price FROM productos";
+                MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn);
+                DataTable productTable = new DataTable();
                 adapter.Fill(productTable);
                 cboProduct.DataSource = productTable;
                 cboProduct.DisplayMember = "Name";
@@ -110,6 +119,7 @@ namespace almacen_lunare
             }
             txtTotalAmount.Text = total.ToString("C");
         }
+
         private void GeneratePDF(int invoiceId, int width, int height)
         {
             string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -163,7 +173,7 @@ namespace almacen_lunare
         }
         private void btnAddItem_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void cboProduct_SelectedIndexChanged(object sender, EventArgs e)
@@ -177,74 +187,83 @@ namespace almacen_lunare
 
         private void fac_bttn_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.Rows.Count == 0 || dataGridView1.Rows[0].Cells["ProductID"].Value == null)
+          
+
+            using (MySqlConnection conn = new MySqlConnection(sendata.connectionstr))
             {
-                MessageBox.Show("Por favor, añada artículos a la factura.");
-                return;
-            }
-
-            int customerId = (int)cboCustomer.SelectedValue;
-            decimal totalAmount = decimal.Parse(txtTotalAmount.Text.Replace("$", "").Replace(",", ""));
-
-            using (SqlConnection conn = new SqlConnection(connectionstr))
-            {
-                conn.Open();
-                SqlTransaction transaction = null;
-                try
+                if (dataGridView1.Rows.Count == 0 || dataGridView1.Rows[0].Cells["ProductID"].Value == null)
                 {
-                    transaction = conn.BeginTransaction();
-
-                    // Insert invoice
-                    string invoiceQuery = "INSERT INTO Invoices (CustomerID, InvoiceDate, TotalAmount) VALUES (@CustomerID, @InvoiceDate, @TotalAmount); SELECT SCOPE_IDENTITY();";
-                    SqlCommand invoiceCmd = new SqlCommand(invoiceQuery, conn, transaction);
-                    invoiceCmd.Parameters.AddWithValue("@CustomerID", customerId);
-                    invoiceCmd.Parameters.AddWithValue("@InvoiceDate", DateTime.Now);
-                    invoiceCmd.Parameters.AddWithValue("@TotalAmount", totalAmount);
-                    int invoiceId = Convert.ToInt32(invoiceCmd.ExecuteScalar());
-
-                    // Insert invoice items
-                    string itemQuery = "INSERT INTO InvoiceItems (InvoiceID, ProductID, Quantity, UnitPrice) VALUES (@InvoiceID, @ProductID, @Quantity, @UnitPrice)";
-                    SqlCommand itemCmd = new SqlCommand(itemQuery, conn, transaction);
-                    itemCmd.Parameters.Add("@InvoiceID", SqlDbType.Int);
-                    itemCmd.Parameters.Add("@ProductID", SqlDbType.Int);
-                    itemCmd.Parameters.Add("@Quantity", SqlDbType.Int);
-                    itemCmd.Parameters.Add("@UnitPrice", SqlDbType.Decimal);
-
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
-                    {
-                        if (!row.IsNewRow && row.Cells["ProductID"].Value != null)
-                        {
-                            itemCmd.Parameters["@InvoiceID"].Value = invoiceId;
-                            itemCmd.Parameters["@ProductID"].Value = Convert.ToInt32(row.Cells["ProductID"].Value);
-                            itemCmd.Parameters["@Quantity"].Value = Convert.ToInt32(row.Cells["Quantity"].Value);
-                            itemCmd.Parameters["@UnitPrice"].Value = Convert.ToDecimal(row.Cells["UnitPrice"].Value);
-                            itemCmd.ExecuteNonQuery();
-                        }
-                    }
-
-                    transaction.Commit();
-                    GeneratePDF(invoiceId, 800, 800);
-                    MessageBox.Show("Factura generada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    // Removemos la llamada a ClearInvoice() para no borrar los datos
-                    // ClearInvoice();
+                    MessageBox.Show("Por favor, añada artículos a la factura.");
+                    return;
                 }
-                catch (Exception ex)
-                {
-                    if (transaction != null)
+
+                int customerId = (int)cboCustomer.SelectedValue;
+                decimal totalAmount = decimal.Parse(txtTotalAmount.Text.Replace("$", "").Replace(",", ""));
+
+               
+                    conn.Open();
+                    MySqlTransaction transaction = null;
+                    try
                     {
-                        try
+                        transaction = conn.BeginTransaction();
+
+                        // Insert invoice - MySQL uses LAST_INSERT_ID() instead of SCOPE_IDENTITY()
+                        string invoiceQuery = @"INSERT INTO Invoices (CustomerID, InvoiceDate, TotalAmount) 
+                              VALUES (@CustomerID, @InvoiceDate, @TotalAmount);
+                              SELECT LAST_INSERT_ID();";
+
+                        MySqlCommand invoiceCmd = new MySqlCommand(invoiceQuery, conn, transaction);
+                        invoiceCmd.Parameters.AddWithValue("@CustomerID", customerId);
+                        invoiceCmd.Parameters.AddWithValue("@InvoiceDate", DateTime.Now);
+                        invoiceCmd.Parameters.AddWithValue("@TotalAmount", totalAmount);
+                        int invoiceId = Convert.ToInt32(invoiceCmd.ExecuteScalar());
+
+                        // Insert invoice items
+                        string itemQuery = @"INSERT INTO InvoiceItems (InvoiceID, ProductID, Quantity, UnitPrice) 
+                           VALUES (@InvoiceID, @ProductID, @Quantity, @UnitPrice)";
+
+                        MySqlCommand itemCmd = new MySqlCommand(itemQuery, conn, transaction);
+                        itemCmd.Parameters.Add("@InvoiceID", MySqlDbType.Int32);
+                        itemCmd.Parameters.Add("@ProductID", MySqlDbType.Int32);
+                        itemCmd.Parameters.Add("@Quantity", MySqlDbType.Int32);
+                        itemCmd.Parameters.Add("@UnitPrice", MySqlDbType.Decimal);
+
+                        foreach (DataGridViewRow row in dataGridView1.Rows)
                         {
-                            transaction.Rollback();
+                            if (!row.IsNewRow && row.Cells["ProductID"].Value != null)
+                            {
+                                itemCmd.Parameters["@InvoiceID"].Value = invoiceId;
+                                itemCmd.Parameters["@ProductID"].Value = Convert.ToInt32(row.Cells["ProductID"].Value);
+                                itemCmd.Parameters["@Quantity"].Value = Convert.ToInt32(row.Cells["Quantity"].Value);
+                                itemCmd.Parameters["@UnitPrice"].Value = Convert.ToDecimal(row.Cells["UnitPrice"].Value);
+                                itemCmd.ExecuteNonQuery();
+                            }
                         }
-                        catch (Exception rollbackEx)
-                        {
-                            MessageBox.Show("Error al revertir la transacción: " + rollbackEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+
+                        transaction.Commit();
+                        GeneratePDF(invoiceId, 800, 800);
+                        MessageBox.Show("Factura generada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    MessageBox.Show("Error al generar la factura: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    catch (MySqlException ex)
+                    {
+                        if (transaction != null)
+                        {
+                            try
+                            {
+                                transaction.Rollback();
+                            }
+                            catch (MySqlException rollbackEx)
+                            {
+                                MessageBox.Show("Error al revertir la transacción: " + rollbackEx.Message,
+                                              "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        MessageBox.Show("Error al generar la factura: " + ex.Message,
+                                      "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                   
                 }
             }
-        }
 
 
         private void extendmenu_Click(object sender, EventArgs e)
@@ -294,6 +313,12 @@ namespace almacen_lunare
 
             dataGridView1.Rows.Add(productId, productName, quantity, unitPrice, total);
             UpdateTotalAmount();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Productwindow pw = new Productwindow();
+            pw.Show();
         }
     }
 }

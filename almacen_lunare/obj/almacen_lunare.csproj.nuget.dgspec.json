@@ -54,6 +54,10 @@
               "target": "Package",
               "version": "[6.0.1, )"
             },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[9.2.0, )"
+            },
             "ScottPlot.WinForms": {
               "target": "Package",
               "version": "[5.0.54, )"

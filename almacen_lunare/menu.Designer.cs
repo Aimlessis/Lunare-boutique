@@ -118,6 +118,8 @@
             label32 = new Label();
             btnAddItem = new Button();
             cboCustomer = new ComboBox();
+            button4 = new Button();
+            panel13 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
@@ -144,6 +146,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numQuantity).BeginInit();
+            panel13.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -652,13 +655,14 @@
             // panel8
             // 
             panel8.BackColor = Color.FromArgb(97, 54, 48);
-            panel8.Location = new Point(860, 22);
+            panel8.Location = new Point(8, 22);
             panel8.Name = "panel8";
             panel8.Size = new Size(274, 184);
             panel8.TabIndex = 3;
             // 
             // tabPage3
             // 
+            tabPage3.Controls.Add(panel13);
             tabPage3.Controls.Add(panel11);
             tabPage3.Controls.Add(panel9);
             tabPage3.Location = new Point(4, 24);
@@ -687,7 +691,7 @@
             panel11.Controls.Add(tbxnomprod);
             panel11.Controls.Add(tbxcodigo);
             panel11.Controls.Add(guardarentrada_bttn);
-            panel11.Location = new Point(36, 150);
+            panel11.Location = new Point(36, 183);
             panel11.Name = "panel11";
             panel11.Size = new Size(1095, 359);
             panel11.TabIndex = 2;
@@ -1138,6 +1142,26 @@
             cboCustomer.Size = new Size(233, 23);
             cboCustomer.TabIndex = 39;
             // 
+            // button4
+            // 
+            button4.Location = new Point(4, 6);
+            button4.Margin = new Padding(4, 3, 4, 3);
+            button4.Name = "button4";
+            button4.Size = new Size(88, 27);
+            button4.TabIndex = 44;
+            button4.Text = "Agregar";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            // 
+            // panel13
+            // 
+            panel13.BackColor = Color.FromArgb(176, 224, 0);
+            panel13.Controls.Add(button4);
+            panel13.Location = new Point(36, 150);
+            panel13.Name = "panel13";
+            panel13.Size = new Size(99, 36);
+            panel13.TabIndex = 45;
+            // 
             // menu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1187,6 +1211,7 @@
             panel10.ResumeLayout(false);
             panel10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numQuantity).EndInit();
+            panel13.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -1281,5 +1306,7 @@
         private Label label32;
         private Button btnAddItem;
         private ComboBox cboCustomer;
+        private Panel panel13;
+        private Button button4;
     }
 }
